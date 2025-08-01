@@ -6,8 +6,11 @@ ROS 2 package for **Post-Run Analysis** of casualty assessments from a ROS bag f
 
 post_ra_ws/
 └── src/
+
 └── post_ra_pkg/
+
 ├── assessments_with_time.csv
+
 ├── observations.json
 ├── observation_data_sources.json
 ├── extract_assessments.py
