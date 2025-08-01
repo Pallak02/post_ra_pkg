@@ -6,11 +6,8 @@ ROS 2 package for **Post-Run Analysis** of casualty assessments from a ROS bag f
 
 post_ra_ws/
 └── src/
-
 └── post_ra_pkg/
-
 ├── assessments_with_time.csv
-
 ├── observations.json
 ├── observation_data_sources.json
 ├── extract_assessments.py
@@ -18,8 +15,14 @@ post_ra_ws/
 ├── extract_observations.py
 ├── extract_observation_data_sources.py
 ├── plot_every_field_by_casualty_time.py
-└── smart_field_plots_time/
-└── [auto-generated plots by field and casualty]
+├── smart_field_plots_time/
+│ ├── respiratory_distress/
+│ ├── severe_hemorrhage/
+│ ├── trauma_head/
+│ ├── trauma_lower_ext/
+│ └── trauma_upper_ext/
+└── README.md
+
 
 ---
 
