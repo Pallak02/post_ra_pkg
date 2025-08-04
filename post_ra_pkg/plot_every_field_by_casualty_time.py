@@ -7,9 +7,9 @@ import ast
 
 # CLI Arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("--csv_dir", type=str, default="outputs/csv")
-parser.add_argument("--json_dir", type=str, default="outputs/json")
-parser.add_argument("--output_dir", type=str, default="outputs/plots")
+parser.add_argument("--csv_dir", type=str, default="../outputs/csv")
+parser.add_argument("--json_dir", type=str, default="../outputs/json")
+parser.add_argument("--output_dir", type=str, default="../outputs/plots")
 args = parser.parse_args()
 
 # Constants
@@ -113,9 +113,9 @@ Platform: {obs.get('platform_name', '')}<br>
 Module: {obs.get('observation_module', '')}<br>
 Observation: {obs.get('observation', '')}<br><br>
 From observation_data_sources<br>
-Platform: {ds.get('platform_name', '')}<br>
-Transcript: {ds.get('transcript', '')}
-""".strip()
+ Platform: {ds.get('platform_name', '')}<br>
+ Transcript: {ds.get('transcript', '')}
+ """.strip()
 
                     plot_rows.append({
                         "casualty_id": casualty_id,
