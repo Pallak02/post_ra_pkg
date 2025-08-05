@@ -98,7 +98,7 @@ for field in LIST_FIELDS:
 
                 expected_len = EXPECTED_LENGTHS.get(field)
                 if expected_len is not None and len(values) != expected_len:
-                    print(f"⚠️ Warning: Skipping row with unexpected length for {field}. Got {len(values)}, expected {expected_len}")
+                    print(f" Warning: Skipping row with unexpected length for {field}. Got {len(values)}, expected {expected_len}")
                     skipped += 1
                     continue
 
@@ -138,9 +138,16 @@ From observation_data_sources<br>
             hover_name="hover",
             title=f"{field.replace('_', ' ').title()} - Casualty {casualty_id}"
         )
+        if field == "hr_value":
+            y_label = "Heart Rate (bpm)"
+        elif field == "rr_value":
+            y_label = "Respiratory Values"
+        else:
+            y_label = "Posterior Values"    
+                
         fig.update_layout(
-            xaxis_title="Time Since Start (s)",
-            yaxis_title="Posterior Values",
+            xaxis_title="Time Since Start (sec)",
+            yaxis_title=y_label,
             xaxis=dict(tickmode='linear', tick0=0, dtick=300)
         )
 
