@@ -45,29 +45,31 @@ ds_dict = {ds["data_source_id"]: ds for ds in data_sources}
 # Injury/metric fields to plot
 LIST_FIELDS = [
     "severe_hemorrhage",
-    "trauma_head",
-    "trauma_upper_ext",
-    "trauma_lower_ext",
     "respiratory_distress",
     "hr_value",
     "rr_value",
+    "trauma_head",
+    "trauma_torso",
+    "trauma_upper_ext",
+    "trauma_lower_ext",
+    "alertness_ocular",
     "alertness_verbal",
-    "alertness_motor",
-    "alertness_eye"
+    "alertness_motor"
 ]
 
 # Expected posterior vector lengths for each field
 EXPECTED_LENGTHS = {
     "severe_hemorrhage": 2,
-    "trauma_head": 2,
-    "trauma_upper_ext": 3,
-    "trauma_lower_ext": 3,
     "respiratory_distress": 2,
-    "alertness_eye": 4,
-    "alertness_verbal": 5,
-    "alertness_motor": 6,
     "hr_value": 1,
-    "rr_value": 1
+    "rr_value": 1,
+    "trauma_head": 3,
+    "trauma_torso": 3,
+    "trauma_upper_ext": 4,
+    "trauma_lower_ext": 4,
+    "alertness_ocular": 3,
+    "alertness_verbal": 4,
+    "alertness_motor": 4
 }
 
 for field in LIST_FIELDS:
@@ -84,7 +86,11 @@ for field in LIST_FIELDS:
                     skipped += 1
                     continue
 
+                # Get the Source ID 
+                # Store the last data_source_ids list  Or  Parse backwards
+                # When i=0, You take all data_source_ids
                 source_ids = eval(row["data_source_ids"])
+                # Instead of last, (Check the last data_source_ids assessment entry - Get all the unique numbers in the list)
                 last_id = source_ids[-1]
 
                 raw_value = row[field]
@@ -96,11 +102,11 @@ for field in LIST_FIELDS:
                 if not isinstance(values, list):
                     values = [values]
 
-                expected_len = EXPECTED_LENGTHS.get(field)
-                if expected_len is not None and len(values) != expected_len:
-                    print(f" Warning: Skipping row with unexpected length for {field}. Got {len(values)}, expected {expected_len}")
-                    skipped += 1
-                    continue
+                # expected_len = EXPECTED_LENGTHS.get(field)
+                # if expected_len is not None and len(values) != expected_len:
+                #     print(f" Warning: Skipping row with unexpected length for {field}. Got {len(values)}, expected {expected_len}")
+                #     skipped += 1
+                #     continue
 
                 time_sec = row["time_since_start"]
                 obs = obs_dict.get(last_id, {})

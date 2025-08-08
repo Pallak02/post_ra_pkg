@@ -53,7 +53,7 @@ while reader.has_next():
         print(f"Skipping message due to error: {e}")
 
 # Save as JSON
-with open("observations.json", "w") as f:
+with open("../outputs/json/observations.json", "w") as f:
     json.dump(observations, f, indent=2)
 
 print(f" Extracted {len(observations)} observations to observations.json")

@@ -40,7 +40,7 @@ while reader.has_next():
     except Exception as e:
         print(f"Skipping due to error: {e}")
 
-with open("observation_data_sources.json", "w") as f:
+with open("../outputs/json/observation_data_sources.json", "w") as f:
     json.dump(data_sources, f, indent=2)
 
 print(f"Extracted {len(data_sources)} data sources to observation_data_sources.json")

@@ -21,7 +21,8 @@ reader.open(storage_options, converter_options)
 fields = [
     "casualty_id", "seq", "timestamp_sec", "time_since_start_sec",
     "severe_hemorrhage", "trauma_head", "trauma_upper_ext", "trauma_lower_ext",
-    "respiratory_distress", "hr_value", "data_source_ids"
+    "respiratory_distress", "hr_value", "data_source_ids", "rr_value", "trauma_torso",
+    "alertness_ocular", "alertness_motor", "alertness_verbal"
 ]
 
 rows = []
@@ -46,11 +47,16 @@ while reader.has_next():
             "time_since_start_sec": time_since_start,
             "severe_hemorrhage": list(msg.severe_hemorrhage),
             "trauma_head": list(msg.trauma_head),
+            "trauma_torso": list(msg.trauma_torso),
             "trauma_upper_ext": list(msg.trauma_upper_ext),
             "trauma_lower_ext": list(msg.trauma_lower_ext),
             "respiratory_distress": list(msg.respiratory_distress),
             "hr_value": msg.hr_value,
-            "data_source_ids": list(msg.data_source_ids)
+            "rr_value": msg.rr_value,
+            "data_source_ids": list(msg.data_source_ids),
+            "alertness_ocular": list(msg.alertness_ocular),
+            "alertness_motor": list(msg.alertness_motor),
+            "alertness_verbal": list(msg.alertness_verbal)
         })
         count += 1
 
@@ -58,7 +64,7 @@ while reader.has_next():
         print(f"[!] Skipping due to error: {e}")
 
 # Save to CSV
-out_file = "assessments_with_time.csv"
+out_file = "../outputs/csv/assessments_with_time.csv"
 with open(out_file, "w", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=fields)
     writer.writeheader()
