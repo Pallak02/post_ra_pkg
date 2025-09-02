@@ -1,0 +1,7 @@
+__pycache__/
+outputs/
+*.pyc
+*.db
+build/
+install/
+log/
